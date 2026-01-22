@@ -9,14 +9,23 @@
     <div class="top-menu">
       <h1>Who's that pokemon?</h1>
       <div class="search-div">
-        <input class="search-input" type="text" placeholder="Search..." />
+        <input id="search-input" type="text" placeholder="Search..." />
         <button class="search-button" type="submit">Catch'em!</button>
       </div>
     </div>
   </head>
 
   <body>
-    <div class="main-wrapper">
+
+    <section class="pokemon-list">
+        <div class="container">
+          <div class="list-wrapper"></div>
+        </div>
+        <div id="not-found-message">Pokemon not found</div>
+      </section>
+
+
+    <!-- <div class="main-wrapper">
       <div class="poke-photo">Photo</div>
 
       <div class="poke-side">
@@ -36,8 +45,7 @@
         <div class="stat4">Stat 4</div>
         <div class="stat5">Stat 5</div>
       </div>
-    </div>
-    <script src="index.js"></script>
+    </div> -->
   </body>
 
   <footer>
@@ -57,9 +65,7 @@
       <a href="https://tenor.com/search/pokemon-stickers">Pokemon Stickers</a>
     </div>
     <script
-      type="text/javascript"
-      async
-      src="https://tenor.com/embed.js"
+      src="./showAll.js"
     ></script>
   </footer>
 </html>

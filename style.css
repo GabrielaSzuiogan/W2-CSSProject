@@ -1,5 +1,14 @@
+
+
 * {
   font-family: "Lucida Sans", Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+
+  padding: 0;
+  overflow: hidden;
 }
 
 .top-menu {
@@ -22,7 +31,7 @@
   -webkit-text-stroke-color: rgb(22, 5, 206);
 }
 
-.search-input {
+#search-input {
   height: 30px;
   width: 300px;
   border-radius: 10px;
@@ -44,7 +53,84 @@
 .search-button:hover {
   background-color: #ffd700;
   cursor: pointer;
-} 
+}
+
+.pokemon-list {
+  /* background-color:  #ffffff; */
+  background-color: #abeef0;
+  box-shadow: 0px 1px 7px 1px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 0.75rem;
+  min-height: calc(85.5% - 1rem);
+  /* width: calc(100% - 5rem); */
+  max-height: 40rem;
+  margin: 3% 8% 0 8%;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+.list-wrapper {
+  margin: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+}
+
+.container {
+  width: 100%;
+  margin: 0;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 8px;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  background-color:  #ffffff;
+  width: 9rem;
+  height: 9rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 1% ;
+  padding: 0.5%;
+}
+
+.list-item .number-wrap {
+  min-height: 16px;
+  text-align: right;
+  padding: 0 8px;
+  margin-top: 10px;
+  color: #666666;
+}
+
+.list-item img {
+  width: 60%;
+  height: 60%;
+  margin: auto;
+  z-index: 1;
+}
+
+.list-item .name-wrap {
+  border-radius: 7px;
+  background-color: #efefef;
+  padding: 10px 3px 10px 8px;
+  color: #212121;
+   margin-top: -18px;
+  
+}
+
+
+
+
+
 
 .main-wrapper {
   align-self: center;
@@ -101,7 +187,9 @@
 
 footer {
   display: flex;
-  justify-items: center;
+  margin: 4% 0 0.2% 0;
+  height: 20%;
   flex-direction: column;
   align-items: center;
+  text-align: end;
 }
