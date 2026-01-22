@@ -1,74 +1,15 @@
-.detail-wrapper.fire {
-  background-color: #F08030;
+@use 'variables' as v;
+
+@each $type, $color in v.$pokemon-types{
+    .detail-wrapper.#{$type} {
+        background-color: $color;
+    }
 }
 
-.detail-wrapper.water {
-  background-color: #6890F0;
-}
 
-.detail-wrapper.grass {
-  background-color: #91c776;
-}
 
-.detail-wrapper.electric {
-  background-color: #F8D030;
-}
 
-.detail-wrapper.ice {
-  background-color: #98D8D8;
-}
 
-.detail-wrapper.fighting {
-  background-color: #c6645f;
-}
-
-.detail-wrapper.poison {
-  background-color: #8f6b8f;
-}
-
-.detail-wrapper.ground {
-  background-color: #E0C068;
-}
-
-.detail-wrapper.flying {
-  background-color: #b9c3f0;
-}
-
-.detail-wrapper.psychic {
-  background-color: #F85888;
-}
-
-.detail-wrapper.bug {
-  background-color: #a7b717;
-}
-
-.detail-wrapper.rock {
-  background-color: #B8A038;
-}
-
-.detail-wrapper.ghost {
-  background-color: #705898;
-}
-
-.detail-wrapper.dragon {
-  background-color: #ed6b7c;
-}
-
-.detail-wrapper.dark {
-  background-color: #919191;
-}
-
-.detail-wrapper.steel {
-  background-color: #B8B8D0;
-}
-
-.detail-wrapper.fairy {
-  background-color: #EE99AC;
-}
-
-.detail-wrapper.normal {
-  background-color: #A8A878;
-}
 
 * {
   font-family: "Lucida Sans", Verdana, sans-serif;
@@ -79,100 +20,125 @@
   .top-menu {
     padding: 1rem;
   }
+
   .top-menu h1 {
     font-size: 1.5rem;
   }
+
   #search-input {
     width: 200px;
     font-size: 0.9rem;
   }
+
   .pokemon-list {
     margin: 1rem;
     height: auto;
     max-height: none;
     padding-bottom: 50px;
   }
+
   .list-item {
     width: 6rem;
     height: 6rem;
   }
+
   .list-item img {
     width: 50%;
     height: 50%;
   }
+
   .list-item .name-wrap {
     font-size: 0.8rem;
     padding: 5px 3px 5px 8px;
   }
+
   .detail-wrapper {
     grid-template-columns: 1fr;
     gap: 15px;
     padding: 15px;
     margin: 15px;
   }
+
   .poke-photo img {
     max-height: 200px;
   }
+
   .poke-name {
     font-size: 1.5rem;
   }
+
   .poke-side, .poke-photo {
     padding: 15px;
   }
+
   #back-button {
     font-size: 0.9rem;
     padding: 8px 15px;
   }
 }
+
 @media (max-width: 480px) {
   .top-menu h1 {
     font-size: 1.2rem;
   }
+
   #search-input {
     width: 150px;
     font-size: 0.8rem;
   }
+
   .list-item {
     width: 5rem;
     height: 5rem;
   }
+
   .list-item img {
     width: 40%;
     height: 40%;
   }
+
   .list-item .name-wrap {
     font-size: 0.7rem;
     padding: 3px 2px 3px 5px;
   }
+
   .detail-wrapper {
     padding: 10px;
     margin: 10px;
   }
+
   .poke-photo img {
     max-height: 150px;
   }
+
   .poke-name {
     font-size: 1.2rem;
   }
+
   .poke-info {
     font-size: 0.9rem;
   }
+
   .poke-stats {
     padding: 15px;
   }
+
   .poke-stats h3 {
     font-size: 1.1rem;
   }
+
   footer {
     font-size: 0.8rem;
   }
 }
+
+
 body {
   margin: 0;
   padding: 0;
   overflow: auto;
   background-image: url("./images/poke-wallpp5.jpg");
-  background-color: rgba(152, 219, 212, 0.6);
+   background-color: rgba(152, 219, 212, 0.6);
   background-blend-mode: lighten;
   background-size: cover;
   background-repeat: no-repeat;
@@ -190,7 +156,7 @@ body {
   padding-bottom: 25px;
   border-radius: 0px 0px 20px 20px;
   /* margin: 2%; */
-  box-shadow: 4.2px 8.5px 8.5px hsla(0, 0%, 0%, 0.37);
+  box-shadow: 4.2px 8.5px 8.5px hsl(0deg 0% 0% / 0.37);
 }
 
 .top-menu h1 {
@@ -198,7 +164,6 @@ body {
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: rgb(22, 5, 206);
 }
-
 .search-div {
   display: flex;
   gap: 10px;
@@ -212,7 +177,7 @@ body {
   width: 300px;
   border-radius: 10px;
   border: 0;
-  box-shadow: 4.2px 8.5px 8.5px hsla(0, 0%, 0%, 0.37);
+  box-shadow: 4.2px 8.5px 8.5px hsl(0deg 0% 0% / 0.37);
   padding: 2px 15px;
 }
 
@@ -229,6 +194,7 @@ body {
   padding-bottom: 50px;
 }
 
+
 .list-wrapper {
   margin: 1rem 1rem;
   display: flex;
@@ -236,6 +202,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+
 }
 
 .container {
@@ -251,13 +218,13 @@ body {
   justify-content: space-around;
   border-radius: 8px;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
-  background-color: #ffffff;
+  background-color:  #ffffff;
   width: 9rem;
   height: 9rem;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  margin: 1%;
+  margin: 1% ;
   padding: 0.5%;
 }
 
@@ -277,15 +244,15 @@ body {
 }
 
 .list-item .name-wrap {
-  border-radius: 7px;
-  background-color: #efefef;
-  padding: 10px 3px 10px 8px;
-  color: #212121;
-  margin-top: -18px;
-  height: 60%;
-  justify-content: center;
-  display: flex;
-  align-items: center;
+    border-radius: 7px;
+    background-color: #efefef;
+    padding: 10px 3px 10px 8px;
+    color: #212121;
+    margin-top: -18px;
+    height: 60%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 #not-found-message {
@@ -306,12 +273,14 @@ body {
   padding: 20px;
   background-color: #ffee91;
   border-radius: 20px;
-  box-shadow: 8px 16px 16px hsla(0, 0%, 0%, 0.25);
+  box-shadow: 8px 16px 16px hsl(0deg 0% 0% / 0.25);
   margin: 8%;
 }
 
+
+
 #back-button {
-  grid-column: 1/-1;
+  grid-column: 1 / -1;
   padding: 10px 20px;
   background-color: #f5c857;
   border: none;
@@ -359,7 +328,7 @@ body {
 }
 
 .poke-stats {
-  grid-column: 1/-1;
+  grid-column: 1 / -1;
   background-color: wheat;
   padding: 20px;
   border-radius: 20px;
@@ -378,5 +347,3 @@ footer {
   align-items: center;
   text-align: end;
 }
-
-/*# sourceMappingURL=style.css.map */

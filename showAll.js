@@ -41,7 +41,7 @@ function displayPokemons(pokemon) {
     listItem.innerHTML = `
             <div class="number-wrap">#${pokemonID}</div>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonID}.png" alt="${pokemon.name}" />
-             <div class="name-wrap">#${pokemon.name}</div>
+             <div class="name-wrap">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</div>
     `;
 
     listItem.addEventListener("click", async () => {
@@ -82,7 +82,7 @@ function showDetails({ pokemon, pokemonSpecies }) {
   searchInput.disabled = true;
 
   container.innerHTML = `
-    <div class="detail-wrapper">
+    <div class="detail-wrapper ${types.split(', ')[0]}">
       <div class="poke-photo">
         <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}" />
       </div>
