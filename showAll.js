@@ -1,7 +1,7 @@
 const MAX_POKEMON = 55;
-const listWrapper = document.querySelector(".list-wrapper");
+let listWrapper;
 const searchInput = document.querySelector("#search-input");
-const notFoundMessage = document.querySelector("#not-found-message");
+let notFoundMessage;
 
 let allPokemons = [];
 
@@ -9,6 +9,8 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
   .then((response) => response.json())
   .then((data) => {
     allPokemons = data.results;
+    listWrapper = document.querySelector(".list-wrapper");
+    notFoundMessage = document.querySelector("#not-found-message");
     displayPokemons(allPokemons);
   });
 
@@ -22,7 +24,7 @@ async function fetchPokemonData(id) {
         res.json(),
       ),
     ]);
-    return true;
+    return { pokemon, pokemonSpecies };
   } catch (error) {
     console.error("Failed to fetch Pokemon data");
   }
@@ -43,9 +45,9 @@ function displayPokemons(pokemon) {
     `;
 
     listItem.addEventListener("click", async () => {
-      const success = await fetchPokemonData(pokemonID);
-      if (success) {
-        window.location.href = `./detail.html?id=${pokemonID}`;
+      const data = await fetchPokemonData(pokemonID);
+      if (data) {
+        showDetails(data);
       }
     });
 
@@ -70,12 +72,44 @@ function handleSearch() {
   }
 }
 
-const closeButton = document.querySelector("#search-close-icon");
-closeButton.addEventListener("click", clearSearch);
 
-function clearSearch() {
-  searchInput.value = "";
-  displayPokemons(allPokemons);
-  notFoundMessage.style.display = "none";
+function showDetails({ pokemon, pokemonSpecies }) {
+  const container = document.querySelector(".container");
+  const description = pokemonSpecies.flavor_text_entries.find(entry => entry.language.name === 'en')?.flavor_text || 'No description available.';
+  const types = pokemon.types.map(type => type.type.name).join(', ');
+  const stats = pokemon.stats.map(stat => `${stat.stat.name}: ${stat.base_stat}`).join('<br>');
+
+  searchInput.disabled = true;
+
+  container.innerHTML = `
+    <div class="detail-wrapper">
+      <div class="poke-photo">
+        <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}" />
+      </div>
+      <div class="poke-side">
+        <div class="poke-name">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</div>
+        <div class="poke-info">
+          <div>Height: ${pokemon.height / 10} m</div>
+          <div>Weight: ${pokemon.weight / 10} kg</div>
+          <div>Types: ${types}</div>
+          <div>Description: ${description}</div>
+        </div>
+      </div>
+      <div class="poke-stats">
+        <h3>Base Stats</h3>
+        <div>${stats}</div>
+      </div>
+      <button id="back-button">Back to List</button>
+    </div>
+  `;
+
+  document.querySelector("#back-button").addEventListener("click", () => {
+    container.innerHTML = '<div class="list-wrapper"></div><div id="not-found-message">Pokemon not found</div>';
+    listWrapper = document.querySelector(".list-wrapper");
+    notFoundMessage = document.querySelector("#not-found-message");
+    searchInput.value = "";
+
+    searchInput.disabled = false;
+    displayPokemons(allPokemons);
+  });
 }
-
