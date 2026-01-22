@@ -6,9 +6,12 @@
 
 body {
   margin: 0;
-
   padding: 0;
   overflow: hidden;
+  background-image: url("./images/poke-wallpp5.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .top-menu {
@@ -112,9 +115,9 @@ body {
 }
 
 .list-item img {
-  width: 60%;
-  height: 60%;
-  margin: auto;
+  width: 55%;
+  height: 55%;
+  margin: 0 auto;
   z-index: 1;
 }
 
