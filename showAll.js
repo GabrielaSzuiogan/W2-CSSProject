@@ -34,7 +34,6 @@ function displayPokemons(pokemon) {
   listWrapper.innerHTML = "";
 
   pokemon.forEach((pokemon) => {
-
     const pokemonID = pokemon.url.split("/")[6];
     const listItem = document.createElement("div");
     listItem.className = "list-item";
@@ -60,7 +59,7 @@ searchInput.addEventListener("keyup", handleSearch);
 function handleSearch() {
   const searchTerm = searchInput.value.toLowerCase();
   let filteredPokemons = allPokemons.filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(searchTerm)
+    pokemon.name.toLowerCase().includes(searchTerm),
   );
 
   displayPokemons(filteredPokemons);
@@ -72,19 +71,23 @@ function handleSearch() {
   }
 }
 
-
 function showDetails({ pokemon, pokemonSpecies }) {
   const container = document.querySelector(".container");
-  const description = pokemonSpecies.flavor_text_entries.find(entry => entry.language.name === 'en')?.flavor_text || 'No description available.';
-  const types = pokemon.types.map(type => type.type.name).join(', ');
-  const stats = pokemon.stats.map(stat => `${stat.stat.name}: ${stat.base_stat}`).join('<br>');
+  const description =
+    pokemonSpecies.flavor_text_entries.find(
+      (entry) => entry.language.name === "en",
+    )?.flavor_text || "No description available.";
+  const types = pokemon.types.map((type) => type.type.name).join(", ");
+  const stats = pokemon.stats
+    .map((stat) => `${stat.stat.name}: ${stat.base_stat}`)
+    .join("<br>");
 
   searchInput.disabled = true;
 
   container.innerHTML = `
     <div class="detail-wrapper">
       <div class="poke-photo">
-        <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}" />
+        <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}" />
       </div>
       <div class="poke-side">
         <div class="poke-name">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</div>
@@ -104,7 +107,8 @@ function showDetails({ pokemon, pokemonSpecies }) {
   `;
 
   document.querySelector("#back-button").addEventListener("click", () => {
-    container.innerHTML = '<div class="list-wrapper"></div><div id="not-found-message">Pokemon not found</div>';
+    container.innerHTML =
+      '<div class="list-wrapper"></div><div id="not-found-message">Pokemon not found</div>';
     listWrapper = document.querySelector(".list-wrapper");
     notFoundMessage = document.querySelector("#not-found-message");
     searchInput.value = "";
